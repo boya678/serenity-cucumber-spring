@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import starter.ConfigurationSpring;
-import starter.entities.NewTable;
-import starter.repository.DsbLicenseRepository;
-
-import java.util.List;
+import starter.repository.NewTableRepository;
 
 @ContextConfiguration(classes = ConfigurationSpring.class)
 public class MyStepdefs {
@@ -20,12 +17,12 @@ public class MyStepdefs {
     String message;
 
     @Autowired
-    DsbLicenseRepository dsbLicenseRepository;
+    NewTableRepository dsbLicenseRepository;
 
     @Given("print message")
     public void printMessage() {
-       Iterable<NewTable> data = dsbLicenseRepository.findAll();
+        dsbLicenseRepository.findAll();
+        System.out.println(dsbLicenseRepository.findAll().iterator().next().toString());
         System.out.println(host + " " + message);
-
     }
 }
